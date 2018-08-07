@@ -28,24 +28,19 @@ class ListaPessoasFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_lista_pessoas, container, false)
+        // Se eu chamar o configuraView aqui, ele da erro de recycler view null
         return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Para evitar esse erro, estou chamando aqui
         configuraComponentesDaView(view)
     }
 
     private fun configuraComponentesDaView(view: View?) {
         configuraView(view)
-        configuraFab(view)
-
-    }
-
-
-    private fun configuraFab(view: View?) {
-
 
     }
 
