@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">QapOcorrencias</string>
+    <string name="qap_ocorrencias">Q.A.P. OCORRÊNCIAS</string>
+    <string name="pessoas">Pessoas</string>
+    <string name="dashboard_ocorrencias">Ocorrências</string>
+</resources>
