@@ -65,7 +65,7 @@ class ListaPessoasFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        delegate.alteraTitulo("Lista de Pessoas")
+        delegate.alteraTitulo("Pessoas")
 
     }
 
