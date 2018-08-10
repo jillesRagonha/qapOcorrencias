@@ -6,5 +6,6 @@ import java.util.Calendar
 
 @Entity
 class Pessoa(
-
-        val nome: String)
+        val nome: String,
+        val apelido: String,
+        val nascimento: String)

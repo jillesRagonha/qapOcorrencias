@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import br.com.agilles.qapocorrencias.R
 import br.com.agilles.qapocorrencias.delegate.PessoasDelegate
 import br.com.agilles.qapocorrencias.model.Pessoa
+import br.com.agilles.qapocorrencias.ui.fragments.FormularioAddPessoaFragment
 import br.com.agilles.qapocorrencias.ui.fragments.ListaPessoasFragment
 
 class PessoasActivity : AppCompatActivity(), PessoasDelegate {
@@ -17,10 +18,12 @@ class PessoasActivity : AppCompatActivity(), PessoasDelegate {
         exibeFragment(ListaPessoasFragment(), false)
     }
 
+
     private fun exibeFragment(fragment: Fragment, empilhado: Boolean) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         with(transaction) {
+            setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_slide_out_top)
             replace(R.id.pessoas_frame_layout, fragment)
             if (empilhado) {
                 addToBackStack(null)
@@ -32,6 +35,7 @@ class PessoasActivity : AppCompatActivity(), PessoasDelegate {
     }
 
     override fun lidaComCliqueFAB() {
+        exibeFragment(FormularioAddPessoaFragment(), true)
 
     }
 
@@ -39,15 +43,15 @@ class PessoasActivity : AppCompatActivity(), PessoasDelegate {
         title = nome
     }
 
+
     override fun voltaParaTelaAnterior() {
         onBackPressed()
-
     }
 
     override fun lidaComPessoaSelecionada(pessoa: Pessoa) {
 
-
     }
+
 
 
 }

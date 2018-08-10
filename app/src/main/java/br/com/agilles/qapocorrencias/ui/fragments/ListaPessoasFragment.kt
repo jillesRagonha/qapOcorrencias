@@ -21,30 +21,31 @@ class ListaPessoasFragment : Fragment() {
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_lista_pessoas, container, false)
-        // Se eu chamar o configuraView aqui, ele da erro de recycler view null
         return view
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Para evitar esse erro, estou chamando aqui
         configuraComponentesDaView(view)
     }
 
     private fun configuraComponentesDaView(view: View?) {
         configuraView(view)
+        configuraFab(view)
 
     }
 
+    private fun configuraFab(view: View?) {
+        fab_add_pessoa.setOnClickListener {
+            delegate.lidaComCliqueFAB()
+        }
+    }
+
     private fun configuraView(view: View?) {
+
         val recyclerView = fragment_lista_pessoas_recycler_view
         with(recyclerView) {
             context?.let {
@@ -56,16 +57,25 @@ class ListaPessoasFragment : Fragment() {
     private fun listaPessoas(): List<Pessoa> {
 
         return listOf(
-                Pessoa(nome = "Jilles Ragonha"),
-                Pessoa(nome = "Jefferson Ragonha"),
-                Pessoa(nome = "Jean Ragonha"))
+                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
+                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
+                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
+                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
+                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
+                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
+                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
+                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
+                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
+                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
+                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
+                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"))
 
 
     }
 
     override fun onResume() {
         super.onResume()
-        delegate.alteraTitulo("Pessoas")
+        delegate.alteraTitulo("Lista de Pessoas")
 
     }
 

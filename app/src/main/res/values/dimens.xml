@@ -2,4 +2,5 @@
 <resources>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="tamanho_titulo">22sp</dimen>
+    <dimen name="margem_padrao">5dp</dimen>
 </resources>

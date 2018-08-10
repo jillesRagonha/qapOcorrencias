@@ -33,8 +33,9 @@ class PessoasAdapter(private val pessoas: List<Pessoa>,
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindView(pessoa: Pessoa) {
-            val nome = itemView.item_pessoa_nome
-            nome.text = pessoa.nome
+            itemView.item_pessoa_nome.text = pessoa.nome
+            itemView.item_pessoa_apelido.text = pessoa.apelido
+            itemView.item_pessoa_nascimento.text = pessoa.nascimento
 
         }
     }

@@ -5,11 +5,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowActivityTransitions">true</item>
+
     </style>
 
     <style name="Titulos">
         <item name="android:textSize">@dimen/tamanho_titulo</item>
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
+
 
 </resources>
