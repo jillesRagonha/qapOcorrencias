@@ -30,6 +30,7 @@ class FormularioAddPessoaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         configuraCampoData()
         form_add_pessoa_botao_salvar.setOnClickListener {
             if (validaCampos()) {

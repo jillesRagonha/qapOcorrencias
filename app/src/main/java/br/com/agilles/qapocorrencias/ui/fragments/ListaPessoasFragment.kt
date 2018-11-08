@@ -21,16 +21,13 @@ class ListaPessoasFragment : Fragment() {
     private val pessoaDao: PessoaDao by inject()
     private val adapter: PessoasAdapter by inject()
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_lista_pessoas, container, false)
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val pessoas = pessoaDao.todas()
         pessoas.observe(this, Observer { pessoas ->
             pessoas?.let {
