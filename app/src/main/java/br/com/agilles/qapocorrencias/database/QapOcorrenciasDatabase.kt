@@ -15,18 +15,3 @@ abstract class QapOcorrenciasDatabase : RoomDatabase() {
 
 
 }
-
-object Database {
-    @Volatile
-    private lateinit var database: QapOcorrenciasDatabase
-
-    fun instance(context: Context): QapOcorrenciasDatabase {
-        synchronized(this) {
-            if (::database.isInitialized) return database
-            database = Room.databaseBuilder(context, QapOcorrenciasDatabase::class.java,
-                    "qapDatabase")
-                    .build()
-            return database
-        }
-    }
-}

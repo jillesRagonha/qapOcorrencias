@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.agilles.qapocorrencias.R
-import br.com.agilles.qapocorrencias.database.Database
 import br.com.agilles.qapocorrencias.database.PessoaDao
 import br.com.agilles.qapocorrencias.delegate.PessoasDelegate
 import br.com.agilles.qapocorrencias.extension.formataParaBrasileiro
 import br.com.agilles.qapocorrencias.model.Pessoa
 import kotlinx.android.synthetic.main.fragment_formulario_add_pessoa.*
+import org.koin.android.ext.android.inject
 import java.util.*
 
 class FormularioAddPessoaFragment : Fragment() {
@@ -21,7 +21,7 @@ class FormularioAddPessoaFragment : Fragment() {
     private val delegate by lazy {
         activity as PessoasDelegate
     }
-    private lateinit var pessoaDao: PessoaDao
+    private val pessoaDao: PessoaDao by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_formulario_add_pessoa, container, false)
@@ -29,11 +29,7 @@ class FormularioAddPessoaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        context?.let {
-            val database = Database.instance(it)
-            pessoaDao = database.pessoaDao()
 
-        }
         configuraCampoData()
         form_add_pessoa_botao_salvar.setOnClickListener {
             if (validaCampos()) {

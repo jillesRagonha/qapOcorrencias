@@ -1,29 +1,25 @@
 package br.com.agilles.qapocorrencias.ui.fragments
 
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.agilles.qapocorrencias.R
-import br.com.agilles.qapocorrencias.database.Database
 import br.com.agilles.qapocorrencias.database.PessoaDao
 import br.com.agilles.qapocorrencias.delegate.PessoasDelegate
-import br.com.agilles.qapocorrencias.model.Pessoa
 import br.com.agilles.qapocorrencias.ui.adapter.PessoasAdapter
 import kotlinx.android.synthetic.main.fragment_lista_pessoas.*
+import org.koin.android.ext.android.inject
 
 class ListaPessoasFragment : Fragment() {
 
     private val delegate by lazy {
         activity as PessoasDelegate
     }
-    private lateinit var pessoaDao: PessoaDao
-    private lateinit var adapter: PessoasAdapter
+    private val pessoaDao: PessoaDao by inject()
+    private val adapter: PessoasAdapter by inject()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,10 +30,7 @@ class ListaPessoasFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        context?.let {
-            val database = Database.instance(it)
-            pessoaDao = database.pessoaDao()
-        }
+
         val pessoas = pessoaDao.todas()
         pessoas.observe(this, Observer { pessoas ->
             pessoas?.let {
@@ -60,9 +53,6 @@ class ListaPessoasFragment : Fragment() {
     }
 
     private fun configuraView(view: View?) {
-        context?.let {
-            this.adapter = PessoasAdapter(context = it)
-        }
         val recyclerView = fragment_lista_pessoas_recycler_view
         recyclerView.adapter = adapter
 

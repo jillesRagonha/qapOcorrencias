@@ -42,6 +42,8 @@ dependencies {
     //Lifecycle
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    //Koin
+    implementation 'org.koin:koin-android:1.0.1'
 
 
 }
