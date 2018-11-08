@@ -1,5 +1,6 @@
 package br.com.agilles.qapocorrencias.database
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import br.com.agilles.qapocorrencias.model.Pessoa
 
@@ -10,7 +11,7 @@ interface PessoaDao {
     fun insere(pessoa: Pessoa)
 
     @Query("SELECT * FROM pessoa")
-    fun todas(): List<Pessoa>
+    fun todas(): LiveData<List<Pessoa>>
 
     @Query("Select * from pessoa Where nome like :nome")
     fun pessoaPorNome(nome: String): Pessoa

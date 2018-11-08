@@ -1,6 +1,7 @@
 package br.com.agilles.qapocorrencias.ui.fragments
 
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.agilles.qapocorrencias.R
+import br.com.agilles.qapocorrencias.database.Database
+import br.com.agilles.qapocorrencias.database.PessoaDao
 import br.com.agilles.qapocorrencias.delegate.PessoasDelegate
 import br.com.agilles.qapocorrencias.model.Pessoa
 import br.com.agilles.qapocorrencias.ui.adapter.PessoasAdapter
@@ -19,6 +22,8 @@ class ListaPessoasFragment : Fragment() {
     private val delegate by lazy {
         activity as PessoasDelegate
     }
+    private lateinit var pessoaDao: PessoaDao
+    private lateinit var adapter: PessoasAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,6 +34,16 @@ class ListaPessoasFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        context?.let {
+            val database = Database.instance(it)
+            pessoaDao = database.pessoaDao()
+        }
+        val pessoas = pessoaDao.todas()
+        pessoas.observe(this, Observer { pessoas ->
+            pessoas?.let {
+                adapter.trocarTodasPessoas(it)
+            }
+        })
         configuraComponentesDaView(view)
     }
 
@@ -45,33 +60,14 @@ class ListaPessoasFragment : Fragment() {
     }
 
     private fun configuraView(view: View?) {
-
-        val recyclerView = fragment_lista_pessoas_recycler_view
-        with(recyclerView) {
-            context?.let {
-                adapter = PessoasAdapter(listaPessoas(), it)
-            }
+        context?.let {
+            this.adapter = PessoasAdapter(context = it)
         }
-    }
-
-    private fun listaPessoas(): List<Pessoa> {
-
-        return listOf(
-                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
-                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
-                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
-                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
-                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
-                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
-                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
-                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
-                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"),
-                Pessoa(nome = "Jilles Ragonha", nascimento = "04/06/1985", apelido = "Fodão"),
-                Pessoa(nome = "Jefferson Ragonha", nascimento = "15/09/81", apelido = "Coragem"),
-                Pessoa(nome = "Jean Ragonha", nascimento = "16/12/1977", apelido = "Shadow"))
-
+        val recyclerView = fragment_lista_pessoas_recycler_view
+        recyclerView.adapter = adapter
 
     }
+
 
     override fun onResume() {
         super.onResume()

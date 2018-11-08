@@ -9,7 +9,7 @@ import br.com.agilles.qapocorrencias.R
 import br.com.agilles.qapocorrencias.model.Pessoa
 import kotlinx.android.synthetic.main.item_pessoa.view.*
 
-class PessoasAdapter(private val pessoas: List<Pessoa>,
+class PessoasAdapter(private val pessoas: MutableList<Pessoa> = mutableListOf(),
                      private val context: Context) : RecyclerView.Adapter<PessoasAdapter.ViewHolder>() {
 
 
@@ -27,6 +27,12 @@ class PessoasAdapter(private val pessoas: List<Pessoa>,
         val pessoa = pessoas[position]
         holder.bindView(pessoa)
 
+    }
+
+    fun trocarTodasPessoas(pessoas: List<Pessoa>) {
+        this.pessoas.clear()
+        this.pessoas.addAll(pessoas)
+        notifyDataSetChanged()
     }
 
 

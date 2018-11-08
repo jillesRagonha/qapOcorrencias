@@ -6,6 +6,9 @@ import java.util.Calendar
 
 @Entity
 class Pessoa(
+        @PrimaryKey(autoGenerate = true)
+        val id: Long = 0,
         val nome: String,
         val apelido: String,
-        val nascimento: String)
+        val nascimento: String,
+        val telefone: String)

@@ -13,4 +13,5 @@ interface PessoasDelegate {
     fun lidaComPessoaSelecionada(pessoa: Pessoa)
 
 
+
 }

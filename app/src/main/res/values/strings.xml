@@ -3,4 +3,6 @@
     <string name="qap_ocorrencias">Q.A.P. OCORRÊNCIAS</string>
     <string name="pessoas">Pessoas</string>
     <string name="dashboard_ocorrencias">Ocorrências</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="salvar">salvar</string>
 </resources>

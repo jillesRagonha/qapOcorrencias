@@ -5,56 +5,38 @@
     android:layout_height="match_parent"
     android:background="@color/color_background">
 
+
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/form_add_pessoa_constraint_nome"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#0FA0EE"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_marginTop="8dp"
+        android:background="#F5F5F5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/form_add_pessoa_nome_text_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:textColorHint="#FFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
 
             <EditText
                 android:id="@+id/form_add_pessoa_edit_nome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_usuario"
-                android:fontFamily="sans-serif-black"
+                style="@style/EditTextFormAddPessoas"
+                android:drawableStart="@drawable/icone_usuario"
                 android:hint="Nome da Pessoa"
                 android:inputType="textCapWords"
-                android:textColor="#FFF"
-                android:textSize="24sp" />
+                android:textAlignment="center" />
 
         </android.support.design.widget.TextInputLayout>
 
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:layout_marginTop="8dp"
-        android:background="#F5F5F5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/form_add_pessoa_constraint_nome">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/form_add_pessoa_apelido_text_input"
@@ -62,14 +44,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/form_add_pessoa_nome_text_input">
 
             <EditText
                 android:id="@+id/form_add_pessoa_edit_apelido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_apelido"
+                style="@style/EditTextFormAddPessoas"
+                android:drawableStart="@drawable/icone_apelido"
                 android:hint="Apelido"
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
@@ -84,12 +64,10 @@
 
             <EditText
                 android:id="@+id/form_add_pessoa_edit_nascimento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_calendar"
-                android:hint="Nascimento"
-                android:inputType="date" />
+                style="@style/EditTextFormAddPessoas"
+                android:drawableStart="@drawable/icone_calendario"
+                android:focusableInTouchMode="false"
+                android:hint="Nascimento" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -102,18 +80,19 @@
 
             <EditText
                 android:id="@+id/form_add_pessoa_edit_telefone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_telefone"
+                style="@style/EditTextFormAddPessoas"
+                android:drawableStart="@drawable/icone_celular"
                 android:hint="Telefone"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/form_add_pessoa_botao_salvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prosseguir"
+            android:background="@drawable/botao_arredondado"
+            android:text="@string/salvar"
+            android:textColor="@color/colorTextIcons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"

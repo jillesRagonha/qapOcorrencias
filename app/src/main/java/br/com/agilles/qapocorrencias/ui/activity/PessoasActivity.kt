@@ -8,15 +8,20 @@ import br.com.agilles.qapocorrencias.delegate.PessoasDelegate
 import br.com.agilles.qapocorrencias.model.Pessoa
 import br.com.agilles.qapocorrencias.ui.fragments.FormularioAddPessoaFragment
 import br.com.agilles.qapocorrencias.ui.fragments.ListaPessoasFragment
+import kotlinx.android.synthetic.main.fragment_formulario_add_pessoa.*
 
 class PessoasActivity : AppCompatActivity(), PessoasDelegate {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pessoas)
         exibeFragment(ListaPessoasFragment(), false)
+
     }
+
+
 
 
     private fun exibeFragment(fragment: Fragment, empilhado: Boolean) {
